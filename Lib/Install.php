@@ -390,8 +390,8 @@ class Install
         }
         if (isset($fileconfig['PluginsInstalled'])) {
             $installplugins = $fileconfig['PluginsInstalled'];
-        } elseif (isset(($this->config->PluginsInstalled))) {
-            foreach ($this->config->PluginsInstalled as $plugin) {
+        } elseif (isset(($this->config->PluginsInstalled['PluginsInstalled']))) {
+            foreach ($this->config->PluginsInstalled['PluginsInstalled'] as $plugin) {
                 if (is_string(($plugin))) {
                     $installplugins[] = $plugin;
                 }
@@ -414,7 +414,7 @@ class Install
             Manager::getInstance()->loadPluginTranslations();
             Manager::getInstance()->loadActivatedPlugins();
             Manager::getInstance()->installLoadedPlugins();
-            $config->PluginsInstalled = $installplugins;
+            $config->PluginsInstalled['PluginsInstalled'] = $installplugins;
             if ($install_tag_manager == true) {
                 $dao = new ContainersDao();
                 $dao->install();
