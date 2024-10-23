@@ -397,7 +397,7 @@ class Install
                 }
             }
         } elseif (isset($option_plugins)) {
-            $plugins_to_activate[] = explode(',', $option_plugins);
+            $installplugins = explode(',', $option_plugins);
         }
         if (isset($installplugins)) {
             $install_tag_manager = false;
