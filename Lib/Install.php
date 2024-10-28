@@ -169,6 +169,12 @@ class Install
             if (isset($options['db-adapter'])) {
                 $config->database['adapter'] = $options['db-adapter'];
             }
+            if (isset($options['collation'])) {
+                $config->database['collation'] = $options['db-collation'];
+            }
+            if (isset($options['charset'])) {
+                $config->database['charset'] = $options['db-charset'];
+            }
         }
 
         if (isset($fileconfig)) {
@@ -182,6 +188,8 @@ class Install
                     'password',
                     'dbname',
                     'adapter',
+                    'collation',
+                    'charset'
                 ];
                 foreach ($keys as $key) {
                     if (isset($database[$key])) {
@@ -198,6 +206,7 @@ class Install
 
 
         if (isset($fileconfig['General'])) {
+            $this->log('Setting');
             $general = $fileconfig['General'];
             if (isset($general['session_save_handler'])) {
                 $config->General['session_save_handler'] = $general['session_save_handler'];

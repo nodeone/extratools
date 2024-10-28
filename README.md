@@ -181,6 +181,13 @@ MATOMO_DATABASE_DBNAME
 MATOMO_DATABASE_ADAPTER
 ```
 
+Non-default:
+
+```sh
+MATOMO_DATABASE_COLLATION
+MATOMO_DATABASE_CHARSET
+```
+
 These could be overridden with (historical reasons):
 
 ```bash
@@ -189,6 +196,8 @@ MATOMO_DB_PREFIX
 MATOMO_DB_USERNAME
 MATOMO_DB_PASSWORD
 MATOMO_DB_NAME
+MATOMO_DB_COLLATION
+MATOMO_DB_CHARSET
 ```
 
 Other environment variables:

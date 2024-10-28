@@ -31,20 +31,19 @@ class Create
         $db_pass = $this->config['db_pass'];
         $db_name = $this->config['db_name'];
 
+        $createDatabaseCommand = "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci; CREATE DATABASE IF NOT EXISTS `$db_name` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
         $drop = new Process\Process(
             [
-                "mysqladmin",
-                 "-u$db_user",
-                "-h",
-                "$db_host",
-                "-P",
-                "$db_port",
+                'mysql',
+                "-u$db_user",
                 "-p$db_pass",
-                "create",
-                "$db_name",
+                "-P$db_port",
+                "-h$db_host",
+                "--execute=$createDatabaseCommand",
                 "--force"
             ]
         );
+
         $drop->enableOutput();
         $drop->run();
 

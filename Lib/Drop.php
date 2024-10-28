@@ -31,34 +31,52 @@ class Drop
         $db_pass = $this->config['db_pass'];
         $db_name = $this->config['db_name'];
 
-        $drop = new Process\Process(
+        $checkDbExists = new Process\Process(
             [
-                "mysqladmin",
+                'mysql',
                 "-u$db_user",
-                "-h",
-                "$db_host",
-                "-P",
-                "$db_port",
                 "-p$db_pass",
-                "drop",
-                "$db_name",
-                "--force"
+                "-P$db_port",
+                "-h$db_host",
+                "--execute=SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = '$db_name'"
             ]
         );
-        $drop->enableOutput();
-        $drop->run();
-        $message = $drop->getOutput();
-        if (!$drop->isSuccessful()) {
-            $message = $drop->getErrorOutput();
-            $this->output->writeln("<error>$message</error>");
-            throw new ProcessFailedException($drop);
-        } else {
-            if ($this->silent === true) {
-                return 0;
+
+        $checkDbExists->run();
+
+        if ($checkDbExists->isSuccessful() && strpos($checkDbExists->getOutput(), $db_name) !== false) {
+            $drop = new Process\Process(
+                [
+                    "mysqladmin",
+                    "-u$db_user",
+                    "-h",
+                    "$db_host",
+                    "-P",
+                    "$db_port",
+                    "-p$db_pass",
+                    "drop",
+                    "$db_name",
+                    "--force"
+                ]
+            );
+            $drop->enableOutput();
+            $drop->run();
+            $message = $drop->getOutput();
+            if (!$drop->isSuccessful()) {
+                $message = $drop->getErrorOutput();
+                $this->output->writeln("<error>$message</error>");
+                throw new ProcessFailedException($drop);
             } else {
-                $this->output->writeln("<info>$message</info>");
-                return 0;
+                if ($this->silent === true) {
+                    return 0;
+                } else {
+                    $this->output->writeln("<info>$message</info>");
+                    return 0;
+                }
             }
         }
+
+
+
     }
 }

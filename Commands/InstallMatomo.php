@@ -126,6 +126,18 @@ Example:
             $this->defaults()->dbAdapter()
         );
         $this->addOptionalValueOption(
+            'db-collation',
+            null,
+            'DB collation',
+            $this->defaults()->dbCollation()
+        );
+        $this->addOptionalValueOption(
+            'db-charset',
+            null,
+            'DB charset',
+            $this->defaults()->dbCharset()
+        );
+        $this->addOptionalValueOption(
             'plugins',
             null,
             'Plugins to install (comma separated)',
@@ -175,6 +187,8 @@ Example:
         $db_name = $input->getOption('db-name');
         $db_prefix = $input->getOption('db-prefix');
         $db_adapter = $input->getOption('db-adapter');
+        $db_collation = $input->getOption('db-collation');
+        $db_charset = $input->getOption('db-charset');
         $plugins = $input->getOption('plugins');
         $timestamp = $input->getOption('timestamp') ? true : false;
         $dontdropdb = $input->getOption('do-not-drop-db') ? true : false;
@@ -202,6 +216,8 @@ Example:
             'db-name' => $db_name,
             'db-prefix' => $db_prefix,
             'db-adapter' => $db_adapter,
+            'db-collation' => $db_collation,
+            'db-charset' => $db_charset,
             'timestamp' => $timestamp,
             'plugins' => $plugins,
             'do-not-drop-db' => $dontdropdb,
@@ -214,7 +230,9 @@ Example:
             'db_user' => $db_username,
             'db_pass' => $db_pass,
             'db_name' => $db_name,
-            'db_adapter' => $db_adapter
+            'db_adapter' => $db_adapter,
+            'db_collation' => $db_collation,
+            'db_charset' => $db_charset,
         ];
 
         if ($force === false) {
