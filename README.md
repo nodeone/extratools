@@ -3,23 +3,23 @@
 Some extra cli commands to help with maintaining Matomo. Also providing an phpinfo page in the admin part.
 Introducing new console commands:
 
-* `archive:list`
-* `config:get`
-* `database:backup`
-* `database:create`
-* `database:drop`
-* `database:import`
-* `logger:delete`
-* `logger:show`
-* `matomo:install`
-* `segment:admin`
-* `segment:list`
-* `site:add`
-* `site:delete`
-* `site:list`
-* `site:url`
-* `visits:get`
-* `customdimensions:configure-new-dimension`
+- `archive:list`
+- `config:get`
+- `database:backup`
+- `database:create`
+- `database:drop`
+- `database:import`
+- `logger:delete`
+- `logger:show`
+- `matomo:install`
+- `segment:admin`
+- `segment:list`
+- `site:add`
+- `site:delete`
+- `site:list`
+- `site:url`
+- `visits:get`
+- `customdimensions:configure-new-dimension`
 
 ## Background
 
@@ -27,47 +27,63 @@ The main reason to doing this plugin was to get automatic installs to work with 
 and version controlled deliveries with configuration in json or yaml.
 
 ## Known bugs
+
 Adding a site as part of `matomo:install` is currently broken, but you could just after the command run the `site:add` command:
-```
+
+```sh
 ./console site:add --name=Foo --urls=https://foo.bar
 ```
 
 ## Dependencies
+
 Sine version 4.1.0-beta1 we are dependent on PHP 8.1
 
-### On host:
-* mysql-client or mariadb-client (for database tasks)
-* PHP json extension
+### On host
 
-### In composer.json (Matomo root):
+- mysql-client or mariadb-client (for database tasks)
+- PHP json extension
+
+### In composer.json (Matomo root)
+
+From version 5.1.0:
+
+- `composer require symfony/yaml:~2.6.0` (moves it from dev)
 
 From version 4.1.0-beta1:
-* `composer require symfony/yaml:~2.6.0` (moves it from dev)
-* `composer require symfony/process:^5.4`
+
+- `composer require symfony/yaml:~2.6.0` (moves it from dev)
+- `composer require symfony/process:^5.4`
 
 Earlier versions:
-* `composer require symfony/yaml:~2.6.0` (moves it from dev)
-* `composer require symfony/process:^3.4`
+
+- `composer require symfony/yaml:~2.6.0` (moves it from dev)
+- `composer require symfony/process:^3.4`
 
 ## Install
 
 Git clone the plugin into your plugins folder:
-```
+
+```sh
 git clone https://github.com/digitalist-se/extratools.git ExtraTools
 ```
 
 ## Config
+
 Activate ExtraTools - in UI, or better - in the console:
-```
+
+```sh
 console plugin:activate ExtraTools
 ```
 
 Set up a db backup path, use the console (use the path you desire):
-```
+
+```sh
 ./console config:set 'ExtraTools.db_backup_path="/var/www/html/tmp"'
 ```
+
 Or add it manually to config.ini.php:
-```
+
+```php
 [ExtraTools]
 db_backup_path = "/var/www/html/tmp"
 ```
@@ -75,39 +91,48 @@ db_backup_path = "/var/www/html/tmp"
 ## Commands
 
 ### `archive:list`
+
 Gets al list of ongoing or scheduled core archivers, if such exist.
 
 ### `config:get`
+
 Gets a section config.
 @todo - make this more like config:set - so you have more options.
 
 ### `database:backup`
+
 Backups the db.
 
 ### `database:create`
+
 Creates the db defined i config.ini.php.
 Adding the --force flag stops the command for asking questions.
 
 ### `database:drop`
+
 Drops the db defined i config.ini.php - backup first if needed.
 Adding the --force flag stops the command for asking questions.
 
 ### `database:import`
+
 Imports database dump to database defined in config.ini.php, so if
 you already have a installation - it overwrites it.
 
 ### `logger:delete`
+
 Removes logging entries from the DB, that is the internal logging in Matomo, not visits on sites.
 
 ### `logger:show`
+
 Show logging and query entries of logs from the database, output could be exported to CSV.
 
 ### `matomo:install`
+
 To use matomo:install, you need ExtraTools to always be enabled, add `always_load_commands_from_plugin=ExtraTools` to `common.config.ini.php`.
 
 Here is how we do it in ad docker image build:
 
-```bash
+```sh
     echo "[General]" > /var/www/html/config/common.config.ini.php; \
     echo "always_load_commands_from_plugin=ExtraTools" >> /var/www/html/config/common.config.ini.php; \
 ```
@@ -167,11 +192,11 @@ You could also use a json-file for configuration - like all the above
 mentioned - and for installing plugins. An example json-file could be found in
 the docs folder for this plugin.
 
-
 #### Environment variables
+
 Supported default environment variables from the official Matomo docker container:
 
-```bash
+```sh
 MATOMO_DATABASE_HOST
 MATOMO_DATABASE_PORT
 MATOMO_DATABASE_TABLES_PREFIX
@@ -190,7 +215,7 @@ MATOMO_DATABASE_CHARSET
 
 These could be overridden with (historical reasons):
 
-```bash
+```sh
 MATOMO_DB_HOST
 MATOMO_DB_PREFIX
 MATOMO_DB_USERNAME
@@ -202,7 +227,7 @@ MATOMO_DB_CHARSET
 
 Other environment variables:
 
-```bash
+```sh
 MATOMO_FIRST_USER_NAME
 MATOMO_FIRST_USER_EMAIL
 MATOMO_FIRST_USER_PASSWORD
@@ -213,32 +238,37 @@ MATOMO_FIRST_SITE_URL
 MATOMO_LOG_TIMESTAMP (1)
 ```
 
-
 #### Installation preparation
+
 If you have a config.ini.php in the config dir - delete it.
 Run:
 
-```bash
+```sh
 console plugin:activate ExtraTools
 ```
 
 Then follow one of the Examples below.
 
 #### Example install 1 (recommended)
-```
+
+```sh
 console matomo:install --install-file=install.json
 ```
 
 #### Example install 2
-```
+
+```sh
 console matomo:install --db-username=myuser --db-pass=password \
   --db-host=localhost --db-port=3306 --db-name=matomo --first-site-name=Foo \
   --first-site-url=https//foo.bar --first-user='Mr Foo Bar' \
   --first-user-email=foo@bar.com --first-user-pass=secret
 ```
+
 #### Example install 3
+
 Using environment variables, docker-compose.yml example.
-```
+
+```sh
 environment:
       - MATOMO_DB_USERNAME=myuser
       - MATOMO_DB_PASSWORD=secret
@@ -253,46 +283,50 @@ environment:
 ```
 
 #### Order of values
+
 Highest number = takes over. If you have you mysql server settings in environment
 variables and provide the option --db-username=myuser, the latter is used for the
 db username.
 
-1) config.ini.php (created when you install the first time)
-2) Environment variable
-3) Option (matomo:install --db-username=myuser)
-4) File overrides (matom-install --install-file=install.json)
+1. config.ini.php (created when you install the first time)
+2. Environment variable
+3. Option (matomo:install --db-username=myuser)
+4. File overrides (matom-install --install-file=install.json)
 
 ## CAUTION!
-* `matamo:install` wipes your current installation.
-* `database:drop` - as it says - drops the entire db, make a backup first if you
-want to save you data, and check if it's ok.
-* `database:import` - writes over your current database.
-* `site:delete` - really deletes a site you have setup in Matomo.
+
+- `matamo:install` wipes your current installation.
+- `database:drop` - as it says - drops the entire db, make a backup first if you
+  want to save you data, and check if it's ok.
+- `database:import` - writes over your current database.
+- `site:delete` - really deletes a site you have setup in Matomo.
 
 This plugin comes with **no** guarantees. But it's free and open source.
 So, let's make it better!
 
 ## Version supported
+
 This is tested from version 3.8.1, and should work with the latest stable.
 
 ## Thank you!
+
 This plugin is based on work done by [Ben Evans](https://github.com/nebev) in
 https://github.com/nebev/piwik-cli-setup, and also reusing code in Matomo
 core.
 
-
 ## Tests
+
 How to run tests.
 
 ### PHPstan
 
-```bash
+```sh
 docker-compose exec matomo bash -c "/var/www/html/plugins/ExtraTools/vendor/bin/phpstan analyze -c /var/www/html/plugins/ExtraTools/tests/phpstan.neon  --level=0 plugins/ExtraTools/"
 ```
 
 ### Phpunit
 
-```bash
+```sh
 docker-compose up -d
 docker-compose exec --user=root matomo bash -c  "cd plugins/ExtraTools && composer install --no-interaction --no-progress"
 docker-compose exec matomo ./console matomo:install --install-file=/var/www/html/config/install.json --force
