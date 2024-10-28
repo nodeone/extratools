@@ -86,7 +86,8 @@
         "password": "root",
         "host": "matomo-base-mysql",
         "dname": "matomo",
-        "tables_prefix": "foobar_"
+        "tables_prefix": "foobar_",
+        "collation": "utf8mb4_general_ci"
     },
     "Config": {
         "General": {

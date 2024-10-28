@@ -79,6 +79,8 @@
       "host": "db",
       "dname": "matomo",
       "tables_prefix": "matomo_",
+      "collation": "utf8mb4_general_ci",
+      "charset": "utf8mb4",
       "adapter": "MYSQLI"
   },
   "Config": {

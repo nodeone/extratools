@@ -114,6 +114,37 @@ class Defaults
     /**
      * @return string
      */
+    public function dbCollation()
+    {
+        $collation = 'utf8mb4_general_ci';
+        if (getenv('MATOMO_DATABASE_COLLATION')) {
+            $host = getenv('MATOMO_DATABASE_COLLATION');
+        }
+        if (getenv('MATOMO_DB_COLLATION')) {
+            $host = getenv('MATOMO_DB_COLLATION');
+        }
+        return $collation;
+    }
+
+    /**
+     * @return string
+     */
+    public function dbCharset()
+    {
+        $charset = 'utf8mb4';
+        if (getenv('MATOMO_DATABASE_CHARSET')) {
+            $host = getenv('MATOMO_DATABASE_CHARSET');
+        }
+        if (getenv('MATOMO_DB_CHARSET')) {
+            $host = getenv('MATOMO_DB_CHARSET');
+        }
+        return $charset;
+    }
+
+
+    /**
+     * @return string
+     */
     public function firstSiteUrl()
     {
         $url = '';
