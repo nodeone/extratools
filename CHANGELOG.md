@@ -10,6 +10,13 @@
 
 - Drop and Create database functions.
 
+## [5.0.8] - 2024-10-28
+
+### Fixed
+
+- Running "matomo:install" without "--force" fails: "getHelper can not be used" #41
+- Missing tables after "matomo:install" #44
+
 ## [5.0.4] - 2024-08-30
 
 ### Added
