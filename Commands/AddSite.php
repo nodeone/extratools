@@ -182,6 +182,13 @@ You could use options to override config or environment variables:
 
         $output->writeln("<info>Adding a new site</info>");
         $new = new Site($site);
+
+        if ($new->exists()) {
+            $output->writeln("<comment>Site $siteName already exists</comment>");
+
+            return self::SUCCESS;
+        }
+
         $add_site = $new->add();
         $output->writeln("<comment>Site $siteName added</comment>");
 
