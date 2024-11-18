@@ -6,6 +6,10 @@
 
 - Prevent duplicates via "site:add" by [mbrodala](https://github.com/mbrodala)
 
+### Added
+
+- License info on all files.
+
 ## [5.1.0] - 2024-10-28
 
 ### Added
