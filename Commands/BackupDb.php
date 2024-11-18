@@ -1,10 +1,22 @@
 <?php
 
 /**
- * ExtraTools
+ * The Extra Tools plugin for Matomo.
  *
- * @link https://github.com/digitalist-se/extratools
- * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
+ * Copyright (C) 2024 Digitalist Open Cloud <cloud@digitalist.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 namespace Piwik\Plugins\ExtraTools\Commands;
@@ -13,13 +25,7 @@ use Piwik\Plugin\ConsoleCommand;
 use Piwik\Config;
 use Piwik\Plugins\ExtraTools\Lib\Backup;
 
-/**
- * This class lets you define a new command. To read more about commands have a look at our Piwik Console guide on
- * http://developer.piwik.org/guides/piwik-on-the-command-line
- *
- * As Piwik Console is based on the Symfony Console you might also want to have a look at
- * http://symfony.com/doc/current/components/console/index.html
- */
+
 class BackupDb extends ConsoleCommand
 {
     /**
