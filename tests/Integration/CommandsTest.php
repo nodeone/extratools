@@ -72,6 +72,23 @@ class CommandsTest extends ConsoleCommandTestCase
         $this->assertStringContainsStringIgnoringCase("Site Foo added", $this->applicationTester->getDisplay());
     }
 
+    public function testSiteAddWithDuplicateWebsiteNameShouldSkip()
+    {
+        $code = $this->applicationTester->run(array(
+            'command' => 'site:add',
+            '--name' => 'Foo',
+            '-vvv' => true,
+        ));
+        $this->assertEquals(0, $code);
+        $code = $this->applicationTester->run(array(
+            'command' => 'site:add',
+            '--name' => 'Foo',
+            '-vvv' => true,
+        ));
+        $this->assertEquals(0, $code);
+        $this->assertStringContainsStringIgnoringCase("Site Foo already exists", $this->applicationTester->getDisplay());
+    }
+
     public function testSiteListShouldSuceedAndShowUrl()
     {
 

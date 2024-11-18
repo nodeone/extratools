@@ -63,6 +63,21 @@ class Site
         return $result;
     }
 
+    public function exists(): bool
+    {
+        $sites = Access::doAsSuperUser(
+            function (): array {
+                $siteName = false;
+                $site = $this->site;
+                extract($site);
+
+                return APISitesManager::getInstance()->getPatternMatchSites($siteName, 1);
+            }
+        );
+
+        return !empty($sites);
+    }
+
     public function list()
     {
         $site_name = [];

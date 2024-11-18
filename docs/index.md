@@ -155,7 +155,7 @@ List all segments, with ID, definition, date created and latest updated.
 
 ### `site:add`
 
-Adds a new site to track.
+Adds a new site to track. If a site with the same name already exists, no site is added.
 
 ### `site:delete`
 
