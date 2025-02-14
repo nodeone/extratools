@@ -44,7 +44,7 @@ To run:
 You could use options to override config or environment variables:
 <info>%command.name% --db-backup-path=/tmp/foo</info>';
         $this->setHelp($HelpText);
-        $this->setName('config:get');
+        $this->setName('extra:config:get');
         $this->setDescription('Get config in the file config/config.ini.php');
         $this->addOptionalValueOption(
             'section',
