@@ -4,7 +4,7 @@ Some extra cli commands to help with maintaining Matomo. Also providing an phpin
 Introducing new console commands:
 
 - `archive:list`
-- `config:get`
+- `extra:config:get`
 - `database:backup`
 - `database:create`
 - `database:drop`
@@ -94,7 +94,7 @@ db_backup_path = "/var/www/html/tmp"
 
 Gets al list of ongoing or scheduled core archivers, if such exist.
 
-### `config:get`
+### `extra:config:get`
 
 Gets a section config.
 @todo - make this more like config:set - so you have more options.

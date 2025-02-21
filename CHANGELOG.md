@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.1.3] - 2025-02-21
+
+### Changed
+
+- `config:get` renamed to `extra:config:get`
+
 ## [5.1.2] - 2025-02-21
 
 ### Added

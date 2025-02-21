@@ -316,7 +316,7 @@ class CommandsTest extends ConsoleCommandTestCase
     public function testConfigGetDatabaseShouldSucceed()
     {
         $code = $this->applicationTester->run(array(
-            'command' => 'config:get',
+            'command' => 'extra:config:get',
             '--section' => 'database',
             '-vvv' => true,
         ));
@@ -330,7 +330,7 @@ class CommandsTest extends ConsoleCommandTestCase
     public function testConfigGetFooBarShouldSucceed()
     {
         $code = $this->applicationTester->run(array(
-            'command' => 'config:get',
+            'command' => 'extra:config:get',
             '--section' => 'foobar',
             '-vvv' => true,
         ));
@@ -344,7 +344,7 @@ class CommandsTest extends ConsoleCommandTestCase
     public function testConfigGetNothingShouldFail()
     {
         $code = $this->applicationTester->run(array(
-            'command' => 'config:get',
+            'command' => 'extra:config:get',
             '-vvv' => true,
         ));
         $this->assertEquals(1, $code);
@@ -357,7 +357,7 @@ class CommandsTest extends ConsoleCommandTestCase
     public function testConfigGetFormatJsonShouldSucceed()
     {
         $code = $this->applicationTester->run(array(
-            'command' => 'config:get',
+            'command' => 'extra:config:get',
             '--section' => 'database',
             '--format' => 'json',
             '-vvv' => true,
