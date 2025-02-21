@@ -1,5 +1,15 @@
 # Changelog
 
+## [5.1.2] - 2025-02-21
+
+### Added
+
+- Github actions for tests.
+
+### Fixed
+
+- Code formatting
+
 ## [5.1.1] - 2024-11-18
 
 ### Fixed
