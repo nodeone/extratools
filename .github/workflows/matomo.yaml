@@ -22,6 +22,7 @@ jobs:
         uses: Digitalist-Open-Cloud/Matomo-github-action-tests@main
         with:
           plugin-name: 'ExtraTools'
+          setup-script: 'composer install'
           php-version: ${{ matrix.php }}
           test-type: 'PluginTests'
           matomo-test-branch: ${{ matrix.target }}
