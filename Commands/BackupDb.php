@@ -25,7 +25,6 @@ use Piwik\Plugin\ConsoleCommand;
 use Piwik\Config;
 use Piwik\Plugins\ExtraTools\Lib\Backup;
 
-
 class BackupDb extends ConsoleCommand
 {
     /**

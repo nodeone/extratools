@@ -352,7 +352,8 @@ class Install
                 // split up the array - now we get $username, $pass and $email.
                 extract($user);
                 $api = APIUsersManager::getInstance();
-                if (!$api->userExists($username)
+                if (
+                    !$api->userExists($username)
                     and !$api->userEmailExists($email)
                 ) {
                     $api->addUser(

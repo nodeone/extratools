@@ -21,7 +21,6 @@
 
 namespace Piwik\Plugins\ExtraTools\Lib;
 
-
 class Defaults
 {
     /**

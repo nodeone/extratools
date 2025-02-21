@@ -32,8 +32,6 @@ class CommandsTest extends ConsoleCommandTestCase
     public function setUp(): void
     {
         parent::setUp();
-
-
     }
 
 
@@ -508,12 +506,6 @@ class CommandsTest extends ConsoleCommandTestCase
         $this->assertEquals(0, $code);
         $this->assertStringContainsStringIgnoringCase("Definition: countryCode==jp", $this->applicationTester->getDisplay());
     }
-
-
-
-
-
-
 }
 
 CommandsTest::$fixture = new SomePageGoalVisitsWithConversions();
