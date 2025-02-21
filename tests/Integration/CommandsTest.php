@@ -334,7 +334,7 @@ class CommandsTest extends ConsoleCommandTestCase
             '--section' => 'foobar',
             '-vvv' => true,
         ));
-        $this->assertEquals(0, $code);
+        $this->assertEquals(1, $code);
         $this->assertStringContainsStringIgnoringCase("Nothing found", $this->applicationTester->getDisplay());
     }
 
@@ -348,7 +348,7 @@ class CommandsTest extends ConsoleCommandTestCase
             '-vvv' => true,
         ));
         $this->assertEquals(1, $code);
-        $this->assertStringContainsStringIgnoringCase("You must set either an argument or set options", $this->applicationTester->getDisplay());
+        $this->assertStringContainsStringIgnoringCase("Looks like section  does not exist", $this->applicationTester->getDisplay());
     }
 
     /**
