@@ -1,0 +1,27 @@
+name: Test plugin with Matomo
+
+on:
+  pull_request: {}
+  workflow_dispatch: {}
+  push:
+    branches: ["5.x-dev"]
+jobs:
+  PluginTests:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '8.2', '8.3', '8.4' ]
+        target: ['minimum_required_matomo', 'maximum_supported_matomo']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Run tests
+        uses: Digitalist-Open-Cloud/Matomo-github-action-tests@main
+        with:
+          plugin-name: 'ExtraTools'
+          php-version: ${{ matrix.php }}
+          test-type: 'PluginTests'
+          matomo-test-branch: ${{ matrix.target }}

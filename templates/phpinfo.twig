@@ -1,5 +1,18 @@
 {% extends 'admin.twig' %}
 
+
+
 {% block content %}
+
+<div class="card">
+  <div class="card-content">
+    <div style="float:right">
+      <a style="text-decoration:none" href="https://digitalist.cloud/">
+        <img src="plugins/ExtraTools/assets/dot.png" height="40" />
+      </a>
+    </div>
+    <h2>{{ 'ExtraTools_PhpInfo'|translate }}</h2>
 {{ info | raw }}
+
+  </div>
 {% endblock %}

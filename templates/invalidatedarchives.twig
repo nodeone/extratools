@@ -2,6 +2,14 @@
 
 {% block content %}
 
+<div class="card">
+    <div class="card-content">
+      <div style="float:right">
+        <a style="text-decoration:none" href="https://digitalist.cloud/">
+          <img src="plugins/ExtraTools/assets/dot.png" height="40" />
+        </a>
+      </div>
+      <h2>{{ 'ExtraTools_Invalidations'|translate }}</h2>
    <table id="results" onchange="unCheckAll()" piwik-content-table>
         <thead>
             <tr>
@@ -29,4 +37,6 @@
         {% endfor %}
         </tbody>
    </table>
+</div>
 {% endblock %}
+
