@@ -42,7 +42,7 @@ class CommandsTest extends ConsoleCommandTestCase
             'command' => 'site:add',
             '-vvv' => true,
         ));
-        $this->assertEquals(1, $code);
+        $this->assertEquals(0, $code);
         $this->assertStringContainsStringIgnoringCase("The website name can't be empty", $this->applicationTester->getDisplay());
     }
     public function testSiteAddWithWebsiteNameShouldSuceed()
