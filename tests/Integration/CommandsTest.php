@@ -62,12 +62,12 @@ class CommandsTest extends ConsoleCommandTestCase
 
         $code = $this->applicationTester->run(array(
             'command' => 'site:add',
-            '--name' => 'Foo',
+            '--name' => 'FooBar',
             '--urls' => 'https://foo.bar',
             '-vvv' => true,
         ));
         $this->assertEquals(0, $code);
-        $this->assertStringContainsStringIgnoringCase("Site Foo added", $this->applicationTester->getDisplay());
+        $this->assertStringContainsStringIgnoringCase("Site FooBar added", $this->applicationTester->getDisplay());
     }
 
     public function testSiteAddWithDuplicateWebsiteNameShouldSkip()
@@ -363,7 +363,7 @@ class CommandsTest extends ConsoleCommandTestCase
             '-vvv' => true,
         ));
         $this->assertEquals(0, $code);
-        $this->assertStringContainsStringIgnoringCase('{"host":"db"', $this->applicationTester->getDisplay());
+        $this->assertStringContainsStringIgnoringCase('{"dbname":"matomo_tests"', $this->applicationTester->getDisplay());
     }
 
     /**
